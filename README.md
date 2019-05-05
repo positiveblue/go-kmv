@@ -10,11 +10,11 @@ The formula used for estimating the cardinality is exactly the same described in
 
 Cardinalty Estimation is considered solved under all meanings. Nowadays computers have enough memory for computing the cardinality of small sets and for extream cases (big data)algorithms like HyperLogLog and KMV already give an accuracy of ~98% using a few bytes of memory. 
 
-In real life what people usually use is an implementation of [HyperLogLog](http://static.googleusercontent.com/external_content/untrusted_dlcp/research.google.com/en/us/pubs/archive/40671.pdf) with a table size of about 128 to 4096. HyperLogLog and all the algorithms of its family can only use tables of size 2^k where k is a positive integer. **go-kmv** does not have that limitation and automatically provides a good trade-off without knowing in advance the order of distinct elements that we have to estimate.
+In real life what people usually use is an implementation of [HyperLogLog](http://static.googleusercontent.com/external_content/untrusted_dlcp/research.google.com/en/us/pubs/archive/40671.pdf) with a table size from about 128 to 4096. HyperLogLog and all the algorithms of its family can only use tables of size `2^k` where k is a positive integer. **go-kmv** does not have that limitation and automatically provides a good trade-off without knowing in advance the order of distinct elements that we have to estimate.
 
-The current implementation grows with a factor of klog(n) where k is the inital table size and n is the number of disctinct elements in the stream. That means that runing go-kmv with an initialSize of 64 and processing and stream of 10^6 elements the final table size will be about ~600 and the accuracy of the estimation will be ~98.00%.
+The current implementation grows with a factor of `klog(n)` where `k` is the inital table size and `n` is the number of disctinct elements in the stream. That means that runing go-kmv with an `initialSize` of 64 and processing and stream of 10^6 elements the final table size will be about ~600 and the accuracy of the estimation will be ~98.00%.
 
-A critical part to achive meaningful results is to use a good hash function (where good = few colisions). Hash Functions like **FNV**, from the go stdlib are not good enough to ensure the theoretical results. Other algorithms like AES provide the best results but are slower and it seems a bit overkill for this implementation. [Murmur3](github.com/spaolacci/murmur3) provides the best ratio results/processing time and it has been used in this implementation.
+A critical part to achive meaningful results is to use a good hash function (where good = few colisions). Hash Functions like **FNV**, from the go stdlib are not good enough to ensure the theoretical results. Other algorithms like **AES** provide the best results but are slower and it seems a bit overkill for this implementation. [Murmur3](github.com/spaolacci/murmur3) provides the best ratio results/processing time and it has been used in this implementation.
 
 # Examples
 
@@ -61,8 +61,8 @@ func main() {
 Because of the lack of generics in Go go-kmv only provides `Insert` functions for `Uint64` and `strings`. If you want to use your own hash functions or add new types you can just create your own function:
 
 ```go
-\\ Insert my type to the table
-\\ Using my hash function
+// Insert my type to the table
+// Using my hash function
 func (kmv *KMV) InsertMyType(s string) {
     // Remember to use the internal seed to have reproducible results
 	hash := myHashFunction.Sum64([]byte(s), kmv.Seed())
