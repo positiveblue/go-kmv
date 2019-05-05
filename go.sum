@@ -1,0 +1,4 @@
+github.com/positiveblue/adaptive-table v0.0.0-20190428201714-2e1c6ba242ca h1:Whh1Ll7vqIqj3IVIiFMbcygCYNkUU6Choi3ymQmjuN4=
+github.com/positiveblue/adaptive-table v0.0.0-20190428201714-2e1c6ba242ca/go.mod h1:YqVscn86Gujuh+8sLLHF8uWLnOixJ7qIGo8C/ko/WNY=
+github.com/spaolacci/murmur3 v1.1.0 h1:7c1g84S4BPRrfL5Xrdp6fOJ206sU9y293DDHaoy0bLI=
+github.com/spaolacci/murmur3 v1.1.0/go.mod h1:JwIasOWyU6f++ZhiEuf87xNszmSA2myDM2Kzu9HwQUA=
