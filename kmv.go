@@ -52,16 +52,7 @@ func (kmv *KMV) EstimateCardinality() uint64 {
 	if kmv.Size() < kmv.initialSize {
 		return uint64(kmv.table.Size())
 	}
-	a := uint64(kmv.table.Size())
-	b := kmv.table.Max()
 
-	c := b / a
-
-	d := uint64(math.MaxUint64 / c)
-
-	return d
-	/*
-		meanDistance := kmv.table.Max() / uint64(kmv.table.Size())
-		return uint64(math.MaxUint64 / float64(meanDistance))
-	*/
+	meanDistance := kmv.table.Max() / uint64(kmv.table.Size())
+	return uint64(math.MaxUint64 / meanDistance)
 }
