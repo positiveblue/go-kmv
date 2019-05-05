@@ -1,8 +1,10 @@
 # go-kmv
-go-kmv is an adaptive version of K-minimum values algorithm for cardinality estimation
 
-This repository provides both: a library for your own Go programs and a cmd tool which
-estimates the cardinality reading from the stdin (so you can use it with the pipe `|` linux operator)
+**go-kmv** is an adaptive version of *K-minimum values algorithm for cardinality estimation*
+
+This repository provides:
+  - A library for your own Go programs
+  - A cmd tool which estimates the cardinality reading from the stdin (so you can use it with the pipe `|` linux operator)
 
 The formula used for estimating the cardinality is exactly the same described in the paper [ Counting distinct elements in a data stream](http://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0CEwQFjAA&url=http%3A%2F%2Fwww.cs.umd.edu%2F~samir%2F498%2Fdistinct.ps&ei=h-3IT5GPBfD16AG0q70v&usg=AFQjCNG4nYiSedl6W3r73ZCXNtnaOancnQ&sig2=E8KzKp4qkLiWMQk690Moyw). What makes this implementation interesting is the use of an adaptive table which grows in order to provide better estimations. The implementation of the adaptive-table can be found [here](https://github.com/positiveblue/adaptive-table)
 
