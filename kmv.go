@@ -38,6 +38,10 @@ func (kmv *KMV) Size() int {
 	return kmv.table.Size()
 }
 
+func (kmv *KMV) Seed() uint32 {
+	return kmv.seed
+}
+
 func (kmv *KMV) InsertUint64(hash uint64) {
 	kmv.totalCounter++
 	kmv.table.Insert(hash)

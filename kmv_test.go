@@ -27,6 +27,18 @@ func TestKMVSize(t *testing.T) {
 	}
 }
 
+func TestKMVSeed(t *testing.T) {
+	kmv := NewKMV(2)
+	if kmv.Seed() == 0 {
+		t.Error("Seed should be a random number when it is not passed as a parameter")
+	}
+
+	kmv = NewKMVWithSeed(2, 12)
+	if kmv.Seed() != 12 {
+		t.Error("Seed was specified in the constructor")
+	}
+}
+
 func TestKMVElementsAdded(t *testing.T) {
 	kmv := NewKMV(2)
 
