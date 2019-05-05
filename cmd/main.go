@@ -25,7 +25,8 @@ func getScanner(fileName string) *bufio.Scanner {
 func fmtMessage(estimator *gokmv.KMV) string {
 	distinct := estimator.EstimateCardinality()
 	total := estimator.ElementsAdded()
-	return fmt.Sprintf("%d distinct elements out of %d processed elements", distinct, total)
+	size := estimator.Size()
+	return fmt.Sprintf("%d %d %d", distinct, total, size)
 }
 
 func main() {
