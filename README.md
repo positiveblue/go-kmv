@@ -18,7 +18,7 @@ A critical part to achive meaningful results is to use a good hash function (whe
 
 After compiling `cmd/main.go` we can run the algorithm from our terminal
 
-```
+```bash
 $ go build -o go-kmv main.go
 
 # Output
@@ -58,12 +58,12 @@ func main() {
 
 Because of the lack of generics in Go go-kmv only provides `Insert` functions for `Uint64` and `strings`. If you want to use your own hash functions or add new types you can just create your own function:
 
-```
+```go
 \\ Insert my type to the table
 \\ Using my hash function
 func (kmv *KMV) InsertMyType(s string) {
     // Remember to use the internal seed to have reproducible results
-	hash := myHashFunction.Sum64([]byte(s), kmv.seed)
+	hash := myHashFunction.Sum64([]byte(s), kmv.Seed())
     // The has has to return a Uint64
 	kmv.InsertUint64(hash)
 }
